@@ -10,6 +10,7 @@ using Nancy.Conventions;
 using Nancy.TinyIoc;
 using Nancy.ViewEngines;
 using Nancy.Embedded.Conventions;
+using System.Threading;
 
 namespace TestOwinNancy.Core
 {
@@ -19,7 +20,9 @@ namespace TestOwinNancy.Core
         {
             
             base.ConfigureApplicationContainer(container);
-            ResourceViewLocationProvider.RootNamespaces.Add(GetType().Assembly, GetType().Assembly.GetName().Name+".Views"); 
+            _ResourceViewLocationProvider.RootNamespaces.Add(GetType().Assembly, GetType().Assembly.GetName().Name+".Views");
+            //https://groups.google.com/forum/#!topic/nancy-web-framework/9N4f6-Y4dNA
+
         }
 
 
@@ -38,7 +41,7 @@ namespace TestOwinNancy.Core
 
         private void OnConfigurationBuilder(NancyInternalConfiguration x)
         {
-            x.ViewLocationProvider = typeof(ResourceViewLocationProvider);
+            x.ViewLocationProvider = typeof(_ResourceViewLocationProvider);
             x.StaticContentProvider = typeof(DefaultStaticContentProvider);
             
         }
