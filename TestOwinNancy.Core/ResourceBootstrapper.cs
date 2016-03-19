@@ -40,6 +40,7 @@ namespace TestOwinNancy.Core
         {
             x.ViewLocationProvider = typeof(ResourceViewLocationProvider);
             x.StaticContentProvider = typeof(DefaultStaticContentProvider);
+            
         }
     }
 }
